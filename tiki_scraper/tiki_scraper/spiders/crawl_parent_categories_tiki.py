@@ -37,5 +37,4 @@ class ParentCategoriesTikiSpider(scrapy.Spider):
 
         parent_categories = pd.Series(parent_categories_id, parent_categories_name)
         parent_categories.to_csv('parent_categories_tiki.csv', header=['id'], encoding='utf-8-sig')
-        print(parent_categories)
         

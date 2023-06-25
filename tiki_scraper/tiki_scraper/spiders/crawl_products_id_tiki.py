@@ -5,8 +5,8 @@ import scrapy
 from urllib.parse import urlencode
 from scrapy import Spider, signals
 
-class ProductsTikiSpider(Spider):
-    name = 'products_tiki'
+class ProductsIdTikiSpider(Spider):
+    name = 'products_id_tiki'
     start_url = 'https://tiki.vn/api/personalish/v1/blocks/listings?'
 
     parent_categories_tiki = pd.read_csv('parent_categories_tiki.csv')
@@ -149,10 +149,10 @@ class ProductsTikiSpider(Spider):
 
     @classmethod
     def from_crawler(cls, crawler, *args, **kwargs):
-        spider = super(ProductsTikiSpider, cls).from_crawler(crawler, *args, **kwargs)
+        spider = super(ProductsIdTikiSpider, cls).from_crawler(crawler, *args, **kwargs)
         crawler.signals.connect(spider.on_spider_closed, signal=signals.spider_closed)
         return spider
 
     def on_spider_closed(self, spider):
         df = pd.DataFrame(self.products_id)
-        df.to_csv('products_id.csv', index=False, header=['id'])
+        df.to_csv('products_id_tiki.csv', index=False, header=['id'])
