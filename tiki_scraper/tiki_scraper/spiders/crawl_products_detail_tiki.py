@@ -49,6 +49,7 @@ class ProductsDetailTikiSpider(Spider):
         d = dict()
 
         d['id'] = data['id']
+        d['name'] = data['name']
         d['sku'] = data['sku']
         d['brand_id'] = data['brand']['id']
         d['brand_name'] = data['brand']['name']
@@ -86,4 +87,4 @@ class ProductsDetailTikiSpider(Spider):
 
     def on_spider_closed(self, spider):
         df = pd.DataFrame(self.products_detail)
-        df.to_csv('products_detail_tiki.csv', encoding='utf-8-sig')
+        df.to_csv('products_detail_tiki.csv', encoding='utf-8-sig', index=False)
